@@ -36,7 +36,7 @@ const Header = () => {
           </S.SearchBtn>
         </S.HeaderBody>
         <NavBar isOpen={isOpen} />
-        {/* <button onClick={asdf}>asdfasdf</button> */}
+        <button onClick={asdf}>asdfasdf</button>
       </S.HeaderContainer>
   );
 };

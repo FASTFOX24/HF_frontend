@@ -53,6 +53,11 @@ const theme = {
     `,
     display_6: css`
       font-size: 26px;
+      font-weight: 700;
+      line-height: 40px;
+    `,
+    display_7: css`
+      font-size: 26px;
       font-weight: 400;
       line-height: 40px;
     `,

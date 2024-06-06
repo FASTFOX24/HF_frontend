@@ -4,13 +4,9 @@ import { IoIosArrowDown } from "react-icons/io";
 import { PiUserCircleFill } from "react-icons/pi";
 
 export const HeaderContainer = styled.div<{ $isOpen: boolean }>`
-  position: sticky;
-  top: 0px;
   display: flex;
+  //이후에 삭제 필요.
   flex-direction: column;
-  width: 100%;
-  z-index: 99;
-  backdrop-filter: ${($isOpen) => ($isOpen ? "blur(10px)" : "none")};
 `;
 export const HeaderBody = styled.div`
   display: flex;
