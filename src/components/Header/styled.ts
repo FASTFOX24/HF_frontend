@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import { IoSearch } from "react-icons/io5";
+import theme from "../../styles/theme";
 import { IoIosArrowDown } from "react-icons/io";
 import { PiUserCircleFill } from "react-icons/pi";
 
 export const HeaderContainer = styled.div<{ $isOpen: boolean }>`
   display: flex;
+  align-items: center;
   //이후에 삭제 필요.
   flex-direction: column;
 `;
@@ -12,19 +13,28 @@ export const HeaderBody = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 64px;
-  background-color: white;
-`;
-export const TitleBtn = styled.button<{ onClick: () => void }>`
-  font-size: 24px;
-`;
-export const SearchBtn = styled.button`
-  width: 48px;
+  width: 100%;
+  max-width: 1280px;
   height: 48px;
-  padding: 0;
+  padding: 0px 12px 0px 24px;
+  @media (min-width: 1280px) {
+    height: 56px;
+  }
 `;
-export const SearchIcon = styled(IoSearch)`
-  font-size: 20px;
+export const Health = styled.span`
+  ${theme.text.heading_4}
+  font-weight: 900;
+  @media (min-width: 1280px) {
+    ${theme.text.heading_2}
+    font-weight: 900;
+  }
+`;
+export const Friend = styled.span`
+  ${theme.text.body_1}
+  color: ${theme.color.primary.OR500};
+  @media (min-width: 1280px) {
+    ${theme.text.heading_3}
+  }
 `;
 export const NavBar = styled.div<{ $isOpen: boolean }>`
   position: fixed;
