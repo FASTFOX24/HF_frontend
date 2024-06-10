@@ -3,7 +3,7 @@ import * as S from "./styled";
 import Header from "../../components/Header/Header";
 import SubTitleBar from "../../components/SubTitlebar/SubTitlebar";
 import SelectBox from "../../components/SelectBox/SelectBox";
-import { gymSortList } from "../../utils/globalData";
+import { gymSortList } from "../../store/globalData";
 import SingleButton from "../../components/SingleButton/SingleButton";
 import ItemCard from "../../components/ItemCard/ItemCard";
 import Pagination from "../../components/Pagination/Pagination";
@@ -35,9 +35,9 @@ const GymListPage = () => {
   const [currentPage, setCurrentPage] = useState<number>(
     Number(urlParams.get("page")) || 1
   );
-  const gymListCards = gymList.map((gymData, idx) => {
-    return <ItemCard key={`gymCard_${idx}`} gymData={gymData} />;
-  });
+  // const gymListCards = gymList.map((gymData, idx) => {
+  //   return <ItemCard key={`gymCard_${idx}`} gymData={gymData} />;
+  // });
   useEffect(() => {
     // const container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스 호출에서 지정
     // const options = {
@@ -81,19 +81,19 @@ const GymListPage = () => {
     <S.PageContainer>
       <Header />
       <SubTitleBar title={"헬스장 / 피트니스 센터"} button={true} />
-      <S.ContentsBox>
+      {/* <S.ContentsBox>
         <S.ButtonBox>
           <SelectBox sortList={gymSortList} />
           <SingleButton buttonName={"지도 보기"} />
         </S.ButtonBox>
-        {/* <S.Map id="map" /> */}
+        <S.Map id="map" />
         <S.GymList>{gymListCards}</S.GymList>
         <Pagination
           currentPage={currentPage}
           page={page}
           setCurrentPage={setCurrentPage}
         />
-      </S.ContentsBox>
+      </S.ContentsBox> */}
     </S.PageContainer>
   );
 };

@@ -1,8 +1,11 @@
 import { createGlobalStyle } from "styled-components";
+import theme from "./theme";
 
 const GlobalStyles = createGlobalStyle`
  *{
         box-sizing: border-box;
+        color: ${theme.color.gray.black};
+        background: ${theme.color.gray.white};
     }
     body {
         font-family: "Pretendard";
@@ -24,15 +27,8 @@ const GlobalStyles = createGlobalStyle`
         cursor: pointer;
     }
     a{
-        text-decoration: none;
         color: inherit;
-    }
-    input {
-        border: 1px solid #d1d1d1;
-        border-radius: 99px;
-        &:focus {
-            outline-color: #ff6300;
-        }
+        text-underline-offset: 3px;
     }
 `;
 

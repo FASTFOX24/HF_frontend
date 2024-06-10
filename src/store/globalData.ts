@@ -1,18 +1,22 @@
 import { atom } from "recoil";
 
 //static data
-export const navBarList = [
-  { btnName: "홈", path: "/" },
-  { btnName: "운동시설 보기", path: "/list_gym" },
-  { btnName: "이용권 구매 내역", path: "/list_ticket" },
+export const menuList = [
+  { btnName: "헬스장 찾기", path: "/list_gym", auth: false, signin: false },
+  { btnName: "이벤트", path: "/event", auth: false, signin: false },
+  { btnName: "커뮤니티", path: "/comunity", auth: false, signin: false },
+  { btnName: "로그인", path: "auth/login", auth: true, signin: true },
   {
-    btnName: "더 보기",
-    list: [
-      { btnName: "마이프로필", path: "/profile" },
-      { btnName: "이벤트", path: "/event" },
-      { btnName: "커뮤니티", path: "/comunity" },
-    ],
+    btnName: "회원가입",
+    path: "auth/joinmembership",
+    auth: true,
+    signin: false,
   },
+];
+export const navBarList = [
+  { btnName: "헬스장 찾기", path: "/list_gym" },
+  { btnName: "이벤트", path: "/event" },
+  { btnName: "커뮤니티", path: "/comunity" },
 ];
 export const gymSortList = [
   { btnName: "낮은 가격순", sortName: "price_low" },

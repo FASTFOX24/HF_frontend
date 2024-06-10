@@ -3,7 +3,7 @@ import * as S from "./styled";
 import Header from "../../components/Header/Header";
 import { useParams } from "react-router";
 import { useRecoilState } from "recoil";
-import { gymData } from "../../utils/globalData";
+import { gymData } from "../../store/globalData";
 import InfoDrawer from "../../components/InfoDrawer/InfoDrawer";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase";
