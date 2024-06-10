@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../utils/membership";
 import { auth, provider } from "../../firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { userData } from "../../utils/globalData";
+import { userData } from "../../store/globalData";
 import { useSetRecoilState } from "recoil";
 import { getData } from "../../apis/aip";
 type FormData = Yup.InferType<typeof loginSchema>;
