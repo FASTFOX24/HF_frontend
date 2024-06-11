@@ -8,7 +8,7 @@ export const menuList = [
   { btnName: "로그인", path: "auth/login", auth: true, signin: true },
   {
     btnName: "회원가입",
-    path: "auth/joinmembership",
+    path: "auth/join_membership/policies",
     auth: true,
     signin: false,
   },
@@ -17,6 +17,14 @@ export const navBarList = [
   { btnName: "헬스장 찾기", path: "/list_gym" },
   { btnName: "이벤트", path: "/event" },
   { btnName: "커뮤니티", path: "/comunity" },
+];
+export const policyList = [
+  { btnName: "만 14세 이상 여부", essential: true, path: "" },
+  { btnName: "서비스 이용약관", essential: true, path: "" },
+  { btnName: "위치기반 서비스 이용약관", essential: true, path: "" },
+  { btnName: "개인정보 수집 및 이용동의", essential: true, path: "" },
+  { btnName: "개인정보 제3자 제공동의", essential: true, path: "" },
+  { btnName: "마케팅 정보 수신 동의", essential: false, path: "" },
 ];
 export const gymSortList = [
   { btnName: "낮은 가격순", sortName: "price_low" },
