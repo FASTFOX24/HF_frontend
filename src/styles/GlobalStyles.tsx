@@ -4,8 +4,7 @@ import theme from "./theme";
 const GlobalStyles = createGlobalStyle`
  *{
         box-sizing: border-box;
-        color: ${theme.color.gray.black};
-        background: ${theme.color.gray.white};
+        
     }
     body {
         font-family: "Pretendard";
@@ -16,6 +15,8 @@ const GlobalStyles = createGlobalStyle`
         padding: 0;
         border: 0;
         vertical-align: baseline;
+        color: ${theme.color.gray.black};
+        background: ${theme.color.gray.white};
     }
     ol, ul{
         list-style: none;
