@@ -42,7 +42,7 @@ export const Box_1_2 = styled.div`
 export const JustAgree = styled.span`
   ${theme.text.heading_2}
 `;
-export const DoneButton = styled.button`
+export const DoneButton = styled.button<{ usable: boolean }>`
   ${theme.text.heading_4}
   width: 100%;
   height: 48px;

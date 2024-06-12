@@ -90,3 +90,27 @@ export const loginSchema = Yup.object({
     .email("이메일 형식을 입력해주세요"),
   password: Yup.string().required("비밀번호를 입력해 주세요"),
 });
+
+//이용약관 필수사항 동의 여부
+export const policySchema = Yup.object({
+  essentialPolicy_1 : Yup.bool().oneOf(
+    [true],
+    "이용약관 동의 후 가입이 가능합니다."
+  ),
+  essentialPolicy_2 : Yup.bool().oneOf(
+    [true],
+    "이용약관 동의 후 가입이 가능합니다."
+  ),
+  essentialPolicy_3 : Yup.bool().oneOf(
+    [true],
+    "이용약관 동의 후 가입이 가능합니다."
+  ),
+  essentialPolicy_4 : Yup.bool().oneOf(
+    [true],
+    "이용약관 동의 후 가입이 가능합니다."
+  ),
+  essentialPolicy_5 : Yup.bool().oneOf(
+    [true],
+    "이용약관 동의 후 가입이 가능합니다."
+  ),
+})

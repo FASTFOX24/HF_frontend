@@ -20,11 +20,11 @@ const PolicyContent = ({ policyData, consentAll }: PolicyContentProps) => {
   return (
     <S.Box_1_1>
       <S.Box_1_1_1>
-        {consentState ? (
-          <S.CheckIcon onClick={changeState} />
-        ) : (
-          <S.NonCheckIcon onClick={changeState} />
-        )}
+          {consentState ? (
+            <S.CheckIcon onClick={changeState} />
+          ) : (
+            <S.NonCheckIcon onClick={changeState} />
+          )}
         <S.PolicyTitle>{policyData.btnName}</S.PolicyTitle>
         {policyData.essential ? (
           <S.Essential>{`(필수)`}</S.Essential>
