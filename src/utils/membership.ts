@@ -93,24 +93,24 @@ export const loginSchema = Yup.object({
 
 //이용약관 필수사항 동의 여부
 export const policySchema = Yup.object({
-  essentialPolicy_1 : Yup.bool().oneOf(
+  essentialPolicy_1: Yup.bool().oneOf(
     [true],
-    "이용약관 동의 후 가입이 가능합니다."
+    "You can sign up after agreeing to the Terms of Use."
   ),
-  essentialPolicy_2 : Yup.bool().oneOf(
+  essentialPolicy_2: Yup.bool().oneOf(
     [true],
-    "이용약관 동의 후 가입이 가능합니다."
+    "You can sign up after agreeing to the Terms of Use."
   ),
-  essentialPolicy_3 : Yup.bool().oneOf(
+  essentialPolicy_3: Yup.bool().oneOf(
     [true],
-    "이용약관 동의 후 가입이 가능합니다."
+    "You can sign up after agreeing to the Terms of Use."
   ),
-  essentialPolicy_4 : Yup.bool().oneOf(
+  essentialPolicy_4: Yup.bool().oneOf(
     [true],
-    "이용약관 동의 후 가입이 가능합니다."
+    "You can sign up after agreeing to the Terms of Use."
   ),
-  essentialPolicy_5 : Yup.bool().oneOf(
+  essentialPolicy_5: Yup.bool().oneOf(
     [true],
-    "이용약관 동의 후 가입이 가능합니다."
+    "You can sign up after agreeing to the Terms of Use."
   ),
-})
+});

@@ -17,6 +17,7 @@ const GlobalStyles = createGlobalStyle`
         vertical-align: baseline;
         color: ${theme.color.gray.black};
         background: ${theme.color.gray.white};
+        cursor: pointer;
     }
     ol, ul{
         list-style: none;
