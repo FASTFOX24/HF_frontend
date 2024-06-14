@@ -12,6 +12,7 @@ export const Box_1_1_1 = styled.div`
   align-items: center;
 `;
 export const PolicyTitle = styled.span`
+
   ${theme.text.heading_4}
   font-weight: 400;
   margin-right: 8px;

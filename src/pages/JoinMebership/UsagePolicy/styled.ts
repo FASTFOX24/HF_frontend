@@ -11,7 +11,7 @@ export const Container = styled.div`
   padding: 0px 24px;
   overflow: scroll;
 `;
-export const ContentBox = styled.div`
+export const ContentBox = styled.form`
   display: flex;
   align-items: center;
   flex-direction: column;
