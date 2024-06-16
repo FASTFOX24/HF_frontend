@@ -1,57 +1,59 @@
-import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 import { policyList } from "../../../store/globalData";
 import PolicyContent from "./PolicyContent/PolicyContent";
 import * as S from "./styled";
 import React, { useState } from "react";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { policySchema } from "../../../utils/membership";
 
-type PolicyFieldName =
-  | "essentialPolicy_1"
-  | "essentialPolicy_2"
-  | "essentialPolicy_3"
-  | "essentialPolicy_4"
-  | "essentialPolicy_5";
 type FormValues = {
   [key: string]: boolean;
 };
+
 const UsagePolicy = () => {
-  const {
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormValues>({
-    resolver: yupResolver(policySchema),
-    defaultValues: policyList.reduce((acc, policy, index) => {
+  const navigate = useNavigate();
+  const [consentAll, setConsentAll] = useState<boolean>(false);
+  const [defaultValues, setDefaultValues] = useState(
+    policyList.reduce((acc, _, index) => {
       acc[`essentialPolicy_${index + 1}`] = false;
       return acc;
-    }, {} as FormValues),
-  });
-  const [consentAll, setConsentAll] = useState<boolean>(false);
+    }, {} as FormValues)
+  );
+  const changePolicyState = (state: boolean, fieldName: string) => {
+    defaultValues[fieldName] = state;
+    setDefaultValues({ ...(defaultValues as any) });
+  };
   const changeAll = () => {
     setConsentAll(!consentAll);
+    Object.keys(defaultValues).forEach((key) => {
+      defaultValues[key] = !consentAll;
+    });
+    setDefaultValues({ ...defaultValues });
   };
   const clickNext = () => {
-    console.log(errors.essentialPolicy_1?.message);
-    console.log(errors.essentialPolicy_2?.message);
-    console.log(errors.essentialPolicy_3?.message);
-    console.log(errors.essentialPolicy_4?.message);
-    console.log(errors.essentialPolicy_1?.message);
-    // alert("이용약관 동의 후 가입이 가능합니다.");
+    Object.values(defaultValues).forEach((value, index) => {
+        console.log(index)
+      if (!value) {
+        // alert("이용약관 동의 후 가입이 가능합니다.");
+        return;
+      } else if (index === 4) {
+        
+      }
+    });
   };
   const policies = policyList.map((policyData, index) => {
-    const fieldName = `essentialPolicy_${index + 1}` as PolicyFieldName;
+    const fieldName = `essentialPolicy_${index + 1}`;
     return (
       <PolicyContent
         key={fieldName}
         policyData={policyData}
-        consentAll={consentAll}
         fieldName={fieldName}
+        policyState={defaultValues[`essentialPolicy_${index + 1}`]}
+        changePolicyState={changePolicyState}
       />
     );
   });
   return (
     <S.Container>
-      <S.ContentBox onSubmit={handleSubmit(clickNext)}>
+      <S.ContentBox>
         <S.Title>이용약관 동의</S.Title>
         <S.Box_1>
           <S.Box_1_1>
@@ -67,7 +69,7 @@ const UsagePolicy = () => {
           <S.Divider />
           <S.Box_1_2>{policies}</S.Box_1_2>
         </S.Box_1>
-        <S.DoneButton type={"submit"} usable={false}>
+        <S.DoneButton onClick={clickNext}>
           계속
         </S.DoneButton>
       </S.ContentBox>

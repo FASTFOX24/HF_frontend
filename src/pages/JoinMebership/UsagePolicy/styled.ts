@@ -11,7 +11,7 @@ export const Container = styled.div`
   padding: 0px 24px;
   overflow: scroll;
 `;
-export const ContentBox = styled.form`
+export const ContentBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -42,7 +42,7 @@ export const Box_1_2 = styled.div`
 export const JustAgree = styled.span`
   ${theme.text.heading_2}
 `;
-export const DoneButton = styled.button<{ usable: boolean }>`
+export const DoneButton = styled.button`
   ${theme.text.heading_4}
   width: 100%;
   height: 48px;
