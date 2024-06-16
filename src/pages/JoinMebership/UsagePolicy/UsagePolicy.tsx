@@ -29,15 +29,13 @@ const UsagePolicy = () => {
     setDefaultValues({ ...defaultValues });
   };
   const clickNext = () => {
-    Object.values(defaultValues).forEach((value, index) => {
-        console.log(index)
-      if (!value) {
-        // alert("이용약관 동의 후 가입이 가능합니다.");
-        return;
-      } else if (index === 4) {
-        
-      }
-    });
+    const values = Object.values(defaultValues);
+    const hasFalseValue = values.slice(0, 5).some((value) => value === false);
+    if (hasFalseValue) {
+      alert("You can join after agreeing to the required terms and conditions");
+    } else {
+      navigate("/auth/join_membership");
+    }
   };
   const policies = policyList.map((policyData, index) => {
     const fieldName = `essentialPolicy_${index + 1}`;
@@ -69,9 +67,7 @@ const UsagePolicy = () => {
           <S.Divider />
           <S.Box_1_2>{policies}</S.Box_1_2>
         </S.Box_1>
-        <S.DoneButton onClick={clickNext}>
-          계속
-        </S.DoneButton>
+        <S.DoneButton onClick={clickNext}>계속</S.DoneButton>
       </S.ContentBox>
     </S.Container>
   );
