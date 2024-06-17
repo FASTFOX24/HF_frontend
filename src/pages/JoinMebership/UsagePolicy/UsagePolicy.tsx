@@ -32,7 +32,7 @@ const UsagePolicy = () => {
     const values = Object.values(defaultValues);
     const hasFalseValue = values.slice(0, 5).some((value) => value === false);
     if (hasFalseValue) {
-      alert("You can join after agreeing to the required terms and conditions");
+      alert("필수 이용약관 동의 후 가입이 가능합니다.");
     } else {
       navigate("/auth/join_membership");
     }
