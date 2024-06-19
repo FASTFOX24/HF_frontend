@@ -16,14 +16,17 @@ const GlobalStyles = createGlobalStyle`
         border: 0;
         vertical-align: baseline;
         color: ${theme.color.gray.black};
-        background: ${theme.color.gray.white};
         cursor: pointer;
     }
     ol, ul{
         list-style: none;
     }
-    button {
-        border: 0;
+    input {
+        border: none;
+        background: none;
+        outline: none;
+    }
+    button, input {
         padding: 0;
         background: transparent;
         cursor: pointer;

@@ -8,13 +8,15 @@ interface IAddr {
   address: string;
   zonecode: string;
 }
+
 interface addrProps {
   docId: string;
+  handleChange: any;
 }
-export const onClickAddr: React.FC<addrProps> = ({ docId }) =>
+export const onClickAddr: React.FC<addrProps> = ({ docId, handleChange }) =>
   new window.daum.Postcode({
     oncomplete: function (data: IAddr) {
-      (document.getElementById(docId) as HTMLInputElement).value = data.address;
+      handleChange(docId, data.address);
     },
   }).open();
 

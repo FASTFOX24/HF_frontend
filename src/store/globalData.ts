@@ -26,6 +26,34 @@ export const policyList = [
   { btnName: "개인정보 제3자 제공동의", essential: true, path: "" },
   { btnName: "마케팅 정보 수신 동의", essential: false, path: "" },
 ];
+export const joinMembershipInputList = [
+  { inputName: "email", placeholder: "이메일", type: "text", icon: false },
+  {
+    inputName: "password",
+    placeholder: "비밀번호",
+    type: "password",
+    icon: true,
+  },
+  {
+    inputName: "confirm_password",
+    placeholder: "비밀번호 확인",
+    type: "password",
+    icon: true,
+  },
+  {
+    inputName: "nickname",
+    placeholder: "닉네임",
+    type: "text",
+    icon: false,
+  },
+  { inputName: "address", placeholder: "주소", type: "text", icon: true },
+  {
+    inputName: "detail_address",
+    placeholder: "상세주소",
+    type: "text",
+    icon: false,
+  },
+];
 export const gymSortList = [
   { btnName: "낮은 가격순", sortName: "price_low" },
   { btnName: "높은 가격순", sortName: "price_high" },

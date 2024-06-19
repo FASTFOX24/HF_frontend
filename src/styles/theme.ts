@@ -20,6 +20,7 @@ const theme = {
       OR300: "#FFCCBA",
     },
     system: {
+      R100 : "#FFF2F2",
       R300: "#F47A6F",
       R400: "#EE4141",
     },
