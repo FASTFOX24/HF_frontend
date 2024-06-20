@@ -1,11 +1,12 @@
 import * as Yup from "yup";
 import * as S from "./styled";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import { auth } from "../../firebase";
 import { useForm } from "react-hook-form";
 import { postData } from "../../apis/aip";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
+  addNewUser,
   joinMembershipSchema,
   nicknameDoubleCheck,
 } from "../../utils/membership";
@@ -48,22 +49,43 @@ const JoinMembership = () => {
       }
     });
   };
+  
   const onSubmit = () => {
-
-    nicknameDoubleCheck({ nickname: getValues("nickname") }).then((result) => {
-      // if (
-      //   result ||
-      //   /^\s*$/.test(getValues("nickname")) ||
-      //   !getValues("nickname")
-      // ) {
-      //   setDoubleCheck(false);
-      // } else {
-      //   setDoubleCheck(true);
-      // }
-      console.log("run")
-      console.log(result)
-    });
-
+    // createUserWithEmailAndPassword(
+    //   auth,
+    //   getValues("email"),
+    //   getValues("password")
+    // )
+    //   .then(() => {
+    //     addNewUser({
+    //       email: getValues("email"),
+    //       nickname: getValues("nickname"),
+    //       password: getValues("password"),
+    //       address: getValues("address"),
+    //       detailAddress: getValues("detail_address"),
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     if (error.code === "auth/email-already-in-use") {
+    //       setError("email", {
+    //         type: "manual",
+    //         message: "이미 사용중인 이메일입니다.",
+    //       });
+    //     }
+    //   });
+    // nicknameDoubleCheck({ nickname: getValues("nickname") }).then((result) => {
+    //   // if (
+    //   //   result ||
+    //   //   /^\s*$/.test(getValues("nickname")) ||
+    //   //   !getValues("nickname")
+    //   // ) {
+    //   //   setDoubleCheck(false);
+    //   // } else {
+    //   //   setDoubleCheck(true);
+    //   // }
+    //   // console.log("run")
+    //   // console.log(result)
+    // });
     // createUserWithEmailAndPassword(
     //   auth,
     //   getValues("email"),
@@ -109,18 +131,18 @@ const JoinMembership = () => {
     />
   ));
   const check = () => {
-    const email = getValues("email");
-    const password = getValues("password");
-    const confirm_password = getValues("confirm_password");
-    const nickname = getValues("nickname");
-    const address = getValues("address");
-    const detail_address = getValues("detail_address");
-    console.log("email", email);
-    console.log("password", password);
-    console.log("confirm_password", confirm_password);
-    console.log("nickname", nickname);
-    console.log("address", address);
-    console.log("detail_address", detail_address);
+    // const email = getValues("email");
+    // const password = getValues("password");
+    // const confirm_password = getValues("confirm_password");
+    // const nickname = getValues("nickname");
+    // const address = getValues("address");
+    // const detail_address = getValues("detail_address");
+    // console.log("email", email);
+    // console.log("password", password);
+    // console.log("confirm_password", confirm_password);
+    // console.log("nickname", nickname);
+    // console.log("address", address);
+    // console.log("detail_address", detail_address);
   };
   return (
     <S.Container>

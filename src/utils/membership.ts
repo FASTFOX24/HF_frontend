@@ -2,14 +2,22 @@ import * as Yup from "yup";
 import { FieldValues, SubmitHandler } from "react-hook-form/dist/types";
 import { postData } from "../apis/aip";
 import { ref, query, orderByChild, equalTo } from "firebase/database";
-import { auth, database } from "../firebase";
+import { auth, database, db } from "../firebase";
 import { onValue } from "firebase/database";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { addDoc, collection } from "firebase/firestore";
 
 //// 회원가입
 //닉네임 중복 검사
 interface nicknameProps {
   nickname: string;
+}
+interface userDataProps {
+  email: string;
+  nickname: string;
+  password: string;
+  address: string;
+  detailAddress: string;
 }
 export const nicknameDoubleCheck = async ({ nickname }: nicknameProps) => {
   const mostViewedPosts = query(
@@ -35,28 +43,19 @@ export const nicknameDoubleCheck = async ({ nickname }: nicknameProps) => {
   });
 };
 //계정 생성
-export const addNewUser: SubmitHandler<FieldValues> = ({
+export const addNewUser = async ({
   email,
   nickname,
   password,
   address,
   detailAddress,
-}) => {
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      postData({
-        url: `users/${nickname}`,
-        data: {
-          uid: userCredential.user.uid,
-          email: email,
-          password: password,
-          addreess: `${address} ${detailAddress}`,
-        },
-      });
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+}: userDataProps) => {
+  await addDoc(collection(db, "users"), {
+    email: email,
+    nickname: nickname,
+    password: password,
+    address: `${address} ${detailAddress}`,
+  });
 };
 // 유효성 검사
 export const joinMembershipSchema = Yup.object({
