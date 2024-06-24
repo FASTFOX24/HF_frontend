@@ -40,15 +40,12 @@ const JoinMembership = () => {
       getValues("nickname") || "",
       getValues("email") || ""
     );
-    console.log(error)
     if (!error.nicknameDuplicate) {
-      console.log("run_1");
       setError("nickname", {
         message: "이미 사용중인 닉네임입니다.",
       });
     }
     if (!error.emailDuplicate) {
-      console.log("run_2");
       setError("email", {
         type: "manual",
         message: "이미 사용중인 이메일입니다.",
@@ -71,13 +68,10 @@ const JoinMembership = () => {
         });
       })
       .catch((error) => {
-        console.log(error.code);
-        if (error.code === "auth/email-already-in-use") {
-          setError("email", {
-            type: "manual",
-            message: "이미 사용중인 이메일입니다.",
-          });
-        }
+        // console.error(error);
+        alert(`회원가입 중 문제가 발생하였습니다. 
+        
+        ${error.code}`);
       });
   };
   const changeValue = (name: inputNameType, value: string) => {
