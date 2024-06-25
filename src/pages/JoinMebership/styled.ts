@@ -21,20 +21,6 @@ export const InputContainer = styled.div`
   width: 312px;
   margin: 48px 0px;
 `;
-// export const doubleCheckBtn = styled.button`
-//   position: absolute;
-//   border: 1px solid black;
-//   border-radius: 16px;
-//   font-size: 12px;
-//   padding: 4px 8px;
-//   top: 7px;
-//   right: 9px;
-//   &.checked {
-//     border: 0px;
-//     background-color: #42c75a;
-//     color: white;
-//   }
-// `;
 export const JoinBtn = styled.input`
   ${theme.text.heading_5}
   width: 100%;
