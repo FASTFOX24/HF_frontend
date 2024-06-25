@@ -1,17 +1,8 @@
 import * as Yup from "yup";
-import { FieldValues, SubmitHandler } from "react-hook-form/dist/types";
-import { postData } from "../apis/aip";
-// import { ref, query, orderByChild, equalTo } from "firebase/database";
-import { auth, database, db } from "../firebase";
-import { onValue } from "firebase/database";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { db } from "../firebase";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 //// 회원가입
-//닉네임 중복 검사
-interface nicknameProps {
-  nickname: string;
-}
 interface userDataProps {
   email: string;
   nickname: string;
@@ -19,29 +10,6 @@ interface userDataProps {
   address: string;
   detailAddress: string;
 }
-// export const nicknameDoubleCheck = async ({ nickname }: nicknameProps) => {
-//   const mostViewedPosts = query(
-//     ref(database, "users"),
-//     orderByChild("nickname"),
-//     equalTo(nickname)
-//   );
-//   return new Promise((resolve, reject) => {
-//     onValue(
-//       mostViewedPosts,
-//       (snapshot) => {
-//         if (snapshot.exists()) {
-//           resolve(true);
-//         } else {
-//           resolve(false);
-//         }
-//       },
-//       (error) => {
-//         console.error("Error checking nickname:", error);
-//         reject(error);
-//       }
-//     );
-//   });
-// };
 //계정 생성
 export const addNewUser = async ({
   email,
