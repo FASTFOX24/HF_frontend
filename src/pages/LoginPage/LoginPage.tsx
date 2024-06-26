@@ -1,15 +1,16 @@
-import React, { useState } from "react";
-import * as S from "./styled";
 import * as Yup from "yup";
-import { useNavigate } from "react-router";
+import * as S from "./styled";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { getData } from "../../apis/aip";
+import { userData } from "../../store/globalData";
+import { useNavigate } from "react-router";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../utils/membership";
 import { auth, provider } from "../../firebase";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { userData } from "../../store/globalData";
 import { useSetRecoilState } from "recoil";
-import { getData } from "../../apis/aip";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+
 type FormData = Yup.InferType<typeof loginSchema>;
 const LoginPage = () => {
   const {

@@ -5,11 +5,9 @@ import { LuEye } from "react-icons/lu";
 import { LuEyeOff } from "react-icons/lu";
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 `;
 export const LoginTitle = styled.p`
   font-size: 36px;
