@@ -1,15 +1,8 @@
 import { useForm } from "react-hook-form";
 import * as S from "./styled";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { onClickAddr } from "../../utils/etc";
 
-type inputNameType =
-  | "email"
-  | "password"
-  | "nickname"
-  | "confirm_password"
-  | "address"
-  | "detail_address";
 interface InputProps {
   inputData: {
     inputName: string;
@@ -19,7 +12,7 @@ interface InputProps {
   };
   value: string;
   $alertMessage: any | string;
-  changeValue: (name: inputNameType, e: string) => void;
+  changeValue: (name: any, e: string) => void;
 }
 
 const Input = ({
@@ -31,7 +24,7 @@ const Input = ({
   const { register } = useForm();
   const [content, setContent] = useState(value);
   const [pswVisible, setPswVisible] = useState(false);
-  const handleChange = (name: inputNameType, value: string) => {
+  const handleChange = (name: any, value: string) => {
     changeValue(name, value);
     setContent(value);
   };
@@ -55,7 +48,7 @@ const Input = ({
           value={content}
           $alertMessage={$alertMessage}
           onChange={(e) => {
-            handleChange(inputData.inputName as inputNameType, e.target.value);
+            handleChange(inputData.inputName, e.target.value);
             register(inputData.inputName);
           }}
           autoComplete="off"

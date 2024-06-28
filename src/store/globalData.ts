@@ -54,6 +54,15 @@ export const joinMembershipInputList = [
     icon: false,
   },
 ];
+export const loginInputList = [
+  { inputName: "email", placeholder: "이메일", type: "text", icon: false },
+  {
+    inputName: "password",
+    placeholder: "비밀번호",
+    type: "password",
+    icon: true,
+  },
+];
 export const gymSortList = [
   { btnName: "낮은 가격순", sortName: "price_low" },
   { btnName: "높은 가격순", sortName: "price_high" },
