@@ -1,81 +1,49 @@
+import theme from "../../styles/theme";
 import styled from "styled-components";
-import { RiKakaoTalkFill } from "react-icons/ri";
 import { FcGoogle } from "react-icons/fc";
-import { LuEye } from "react-icons/lu";
-import { LuEyeOff } from "react-icons/lu";
+import { RiKakaoTalkFill } from "react-icons/ri";
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  @media (min-height: 500px) {
+    /* background-color: black; */
+  }
 `;
 export const LoginTitle = styled.p`
-  font-size: 36px;
-  font-weight: bold;
-  margin-bottom: 64px;
-  @media (max-width: 767px) {
-    font-size: 24px;
+  ${theme.text.display_6}
+  margin-bottom: 48px;
+  @media (min-width: 768px) {
+    ${theme.text.display_5}
+    margin-bottom: 56px;
   }
 `;
 export const FormBox = styled.form`
-display: flex;
-flex-direction: column;
-`
-export const InputContainer = styled.div`
-  position: relative;
-  margin-bottom: 36px;
-`;
-export const TextField = styled.input`
-  width: 222px;
-  height: 12px;
-  padding: 12px 16px;
-`;
-export const ErrorMessage = styled.p`
-  position: absolute;
-  left: 12px;
-  margin-top: 4px;
-  font-size: 12px;
-  color: red;
-`;
-export const IconBtn = styled.button`
-  font-size: 20px;
-  position: absolute;
-  right: 0px;
-  padding: 10px 16px;
-  color: #828282;
-  cursor: pointer;
-`;
-export const VisibleIcon = styled(LuEye)`
-  font-size: 20px;
-  color: #828282;
-`;
-export const InvisibleIcon = styled(LuEyeOff)`
-  font-size: 20px;
-  color: #828282;
+  display: grid;
+  grid-gap: 28px;
+  width: 312px;
 `;
 export const LoginBtn = styled.input`
-  background-color: #ff6300;
-  border: 0px;
-  border-radius: 16px;
-  width: 256px;
-  height: 36px;
-  color: white;
-  font-weight: bold;
+  ${theme.text.heading_4}
+  color: ${theme.color.gray.white};
+  background-color: ${theme.color.primary.OR500};
+  border-radius: 99px;
+  height: 48px;
 `;
 export const DividerBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 256px;
-  margin: 16px 0px;
+  width: 312px;
+  margin: 28px 0px;
 `;
 export const Divider = styled.hr`
-  width: 108px;
-  border: 0;
-  height: 0;
-  border-top: 1px solid #9a9a9a;
+margin : 0px;
+  width: 20%;
   border-radius: 12px;
-  margin: 24px 0px;
 `;
 export const DividerText = styled.span`
   color: #9a9a9a;
