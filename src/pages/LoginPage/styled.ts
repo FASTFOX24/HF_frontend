@@ -9,8 +9,8 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  @media (min-height: 500px) {
-    /* background-color: black; */
+  @media (max-height: 652px) {
+    padding: 48px 0px;
   }
 `;
 export const LoginTitle = styled.p`
@@ -23,7 +23,7 @@ export const LoginTitle = styled.p`
 `;
 export const FormBox = styled.form`
   display: grid;
-  grid-gap: 28px;
+  grid-gap: 32px;
   width: 312px;
 `;
 export const LoginBtn = styled.input`
@@ -41,60 +41,57 @@ export const DividerBox = styled.div`
   margin: 28px 0px;
 `;
 export const Divider = styled.hr`
-margin : 0px;
-  width: 20%;
+  margin: 0px;
+  width: 40%;
+  border: 0px;
+  border-top: 1px solid ${theme.color.gray.G300};
   border-radius: 12px;
 `;
 export const DividerText = styled.span`
-  color: #9a9a9a;
-  font-weight: bold;
-  font-size: 12px;
+  ${theme.text.body_2}
+  color: ${theme.color.gray.G300};
 `;
 export const OauthBox = styled.div`
-  display: flex;
-  width: 256px;
-  justify-content: space-between;
+  display: grid;
+  grid-gap: 16px;
+  width: 312px;
 `;
-export const KakaoAuth = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 124px;
-  height: 32px;
-  border-radius: 99px;
-  font-weight: bold;
-  background-color: #fae100;
-  text-align: center;
-`;
-export const KakaoIcon = styled(RiKakaoTalkFill)`
-  font-size: 14px;
-  margin-right: 4px;
-`;
-export const GoogleAuth = styled.button`
+export const AuthBtn = styled.button`
+  ${theme.text.heading_4}
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 124px;
-  height: 32px;
+  width: 100%;
+  height: 48px;
   border-radius: 99px;
-  font-weight: bold;
-  border: 1px solid black;
+  &.kakao {
+    background-color: ${theme.color.other.yellow};
+  }
+  &.google {
+    border: 1px solid ${theme.color.gray.G300};
+  }
 `;
 export const GoogleIcon = styled(FcGoogle)`
-  font-size: 14px;
-  margin-right: 4px;
+  font-size: 24px;
+  margin-right: 12px;
 `;
+export const KakaoIcon = styled(RiKakaoTalkFill)`
+  font-size: 24px;
+  margin-right: 12px;
+`;
+
 export const JMBox = styled.div`
   display: flex;
-  margin-top: 36px;
+  margin-top: 48px;
 `;
 export const Text_1 = styled.span`
-  color: #828282;
-  font-size: 12px;
+  ${theme.text.body_2}
+  color: ${theme.color.gray.G400};
   margin-right: 8px;
 `;
 export const JMBtn = styled.a`
-  font-size: 12px;
+  ${theme.text.body_2}
+  color: ${theme.color.gray.G700};
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
 `;

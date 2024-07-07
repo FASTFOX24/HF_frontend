@@ -7,9 +7,8 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
   min-height: 100vh;
-  padding: 48px 0px;
-  @media (min-width: 767px) and (max-width: 1470px) {
-    padding: 0px 0px;
+  @media (max-height: 726px) {
+    padding: 48px 0px;
   }
 `;
 export const Title = styled.h3`

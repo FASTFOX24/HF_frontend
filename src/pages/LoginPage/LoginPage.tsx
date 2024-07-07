@@ -1,15 +1,19 @@
 import * as Yup from "yup";
 import * as S from "./styled";
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { getData } from "../../apis/aip";
-import { loginInputList, userData } from "../../store/globalData";
 import { useNavigate } from "react-router";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../utils/membership";
 import { auth, provider } from "../../firebase";
 import { useSetRecoilState } from "recoil";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { loginInputList, userData } from "../../store/globalData";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import Input from "../../components/Input/Input";
 
 type FormData = Yup.InferType<typeof loginSchema>;
@@ -17,7 +21,6 @@ type InputName = "email" | "password";
 
 const LoginPage = () => {
   const {
-    register,
     handleSubmit,
     getValues,
     setValue,
@@ -27,24 +30,21 @@ const LoginPage = () => {
     resolver: yupResolver(loginSchema),
   });
   const setUserData = useSetRecoilState(userData);
-  const [visibleState, setVisibleState] = useState(false);
   const navigate = useNavigate();
-  const changeVisible = () => {
-    setVisibleState(!visibleState);
-  };
   const changeValue = (name: InputName, value: string) => {
     setValue(name, value);
   };
   const onSubmit = () => {
     signInWithEmailAndPassword(auth, getValues("email"), getValues("password"))
       .then((userCredential) => {
-        getData(`/users/${userCredential.user.uid}`).then((result) => {
-          setUserData(result);
-        });
-        navigate("/");
+        console.log(userCredential);
+        // getData(`/users/${userCredential.user.uid}`).then((result) => {
+        //   console.log(result);
+        //   setUserData(result);
+        // });
+        // navigate("/");
       })
-      .catch((error) => {
-        console.log(error.errorCode);
+      .catch(() => {
         setError("password", {
           type: "manual",
           message: "비밀번호가 일치하지 않습니다.",
@@ -53,8 +53,13 @@ const LoginPage = () => {
   };
   const googleAuth = () => {
     signInWithPopup(auth, provider)
-      .then(() => {
-        navigate("/");
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential?.accessToken;
+        console.log(token);
+        const user = result.user;
+        console.log(user);
+        // navigate("/");
       })
       .catch((error) => {
         console.error(error);
@@ -82,24 +87,25 @@ const LoginPage = () => {
         <S.Divider />
       </S.DividerBox>
       <S.OauthBox>
-        <S.KakaoAuth>
-          <S.KakaoIcon />
-          Kakao
-        </S.KakaoAuth>
-        <S.GoogleAuth
+        <S.AuthBtn
+          className="google"
           onClick={() => {
             googleAuth();
           }}
         >
           <S.GoogleIcon />
-          Google
-        </S.GoogleAuth>
+          Google 로그인
+        </S.AuthBtn>
+        <S.AuthBtn className="kakao">
+          <S.KakaoIcon />
+          카카오 로그인
+        </S.AuthBtn>
       </S.OauthBox>
       <S.JMBox>
         <S.Text_1>계정이 없으신가요?</S.Text_1>
         <S.JMBtn
           onClick={() => {
-            navigate("/auth/join_membership");
+            navigate("/auth/join_membership/policies");
           }}
         >
           회원가입 하러가기
