@@ -1,6 +1,14 @@
 import * as Yup from "yup";
-import { db } from "../firebase";
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { auth, db } from "../firebase";
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 //// 회원가입
 interface userDataProps {
@@ -8,27 +16,38 @@ interface userDataProps {
   nickname: string;
   password: string;
   address: string;
-  detailAddress: string;
 }
+type PartialUserDataProps = Pick<userDataProps, "email" | "nickname">;
 //계정 생성
 export const addNewUser = async ({
   email,
-  nickname,
   password,
+  nickname,
   address,
-  detailAddress,
 }: userDataProps) => {
-  await addDoc(collection(db, "users"), {
-    email: email,
-    nickname: nickname,
-    password: password,
-    address: `${address} ${detailAddress}`,
-  });
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
+    await setDoc(doc(db, "users", user.uid), {
+      email: email,
+      displayName: nickname,
+      address: address,
+    });
+  } catch (error) {
+    throw error;
+  }
 };
-export const duplicateCheck = async (nickname: string, email: string) => {
+export const duplicateCheck = async ({
+  nickname,
+  email,
+}: PartialUserDataProps) => {
   const nicknameQuery = query(
     collection(db, "users"),
-    where("nickname", "==", nickname)
+    where("displayName", "==", nickname)
   );
   const emailQuery = query(
     collection(db, "users"),
@@ -36,10 +55,7 @@ export const duplicateCheck = async (nickname: string, email: string) => {
   );
   const nicknameSnapshot = await getDocs(nicknameQuery);
   const emailSnapshot = await getDocs(emailQuery);
-  return {
-    nicknameDuplicate: nicknameSnapshot.empty,
-    emailDuplicate: emailSnapshot.empty,
-  };
+  return { nickname: nicknameSnapshot.empty, email: emailSnapshot.empty };
 };
 // 유효성 검사
 export const joinMembershipSchema = Yup.object({

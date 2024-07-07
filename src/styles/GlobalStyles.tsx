@@ -22,7 +22,6 @@ const GlobalStyles = createGlobalStyle`
         list-style: none;
     }
     input {
-        border: none;
         background: none;
         outline: none;
     }
@@ -30,6 +29,7 @@ const GlobalStyles = createGlobalStyle`
         padding: 0;
         background: transparent;
         cursor: pointer;
+        border: none;
     }
     a{
         color: inherit;

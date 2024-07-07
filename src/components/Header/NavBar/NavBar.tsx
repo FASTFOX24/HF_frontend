@@ -41,7 +41,7 @@ const NavBar: React.FC<NavBarProps> = ({ isOpen }) => {
           <S.LoginBox>
             <S.ProfileBtn>
               <S.UserIcon />
-              <S.DisplayName>{userInfo.displayName}</S.DisplayName>
+              {/* <S.DisplayName>{userInfo.displayName}</S.DisplayName> */}
             </S.ProfileBtn>
           </S.LoginBox>
         ) : (
@@ -61,17 +61,17 @@ const NavBar: React.FC<NavBarProps> = ({ isOpen }) => {
         )}
         <S.BenefitBox>
           <S.BenfitContent>
-            {user?.uid ? addComma(userInfo.point) : "-"}
+            {/* {user?.uid ? addComma(userInfo.point) : "-"} */}
             <br />
             포인트
           </S.BenfitContent>
           <S.Divider />
           <S.BenfitContent>
-            {!user?.uid
+            {/* {!user?.uid
               ? "-"
               : !userInfo.coupon
               ? "0 개"
-              : Object.keys(userInfo.coupon).length + " 개"}
+              : Object.keys(userInfo.coupon).length + " 개"} */}
             <br />
             할인쿠폰
           </S.BenfitContent>
