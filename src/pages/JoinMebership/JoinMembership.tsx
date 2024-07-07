@@ -6,11 +6,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router";
 import { joinMembershipInputList } from "../../store/globalData";
-import {
-  addNewUser,
-  duplicateCheck,
-  joinMembershipSchema,
-} from "../../utils/membership";
+import { addNewUser, joinMembershipSchema } from "../../utils/membership";
 
 type FormData = Yup.InferType<typeof joinMembershipSchema>;
 type inputNameType =
@@ -25,7 +21,6 @@ const JoinMembership = () => {
   const {
     handleSubmit,
     getValues,
-    setError,
     setValue,
     formState: { errors },
   } = useForm<FormData>({
@@ -35,55 +30,28 @@ const JoinMembership = () => {
   const changeValue = (name: inputNameType, value: string) => {
     setValue(name, value);
   };
-  const clickDone = async () => {
-    const error = await duplicateCheck({
-      email: getValues("email") || "",
-      nickname: getValues("nickname") || "",
-    });
-    if (!error.nickname) {
-      setError("nickname", {
-        message: "이미 사용중인 닉네임입니다.",
-      });
-    }
-    if (!error.email) {
-      setError("email", {
-        message: "이미 사용중인 이메일입니다.",
-      });
-    }
-  };
+
   const onSubmit = async () => {
-    const error = await duplicateCheck({
-      email: getValues("email") || "",
-      nickname: getValues("nickname") || "",
-    });
-    if (!error.email || !error.nickname) {
-      if (!error.nickname) {
-        setError("nickname", {
-          message: "이미 사용중인 닉네임입니다.",
-        });
+    try {
+      await addNewUser({
+        email: getValues("email"),
+        nickname: getValues("nickname"),
+        password: getValues("password"),
+        address: `${getValues("address")} ${getValues("detail_address")}`,
+      });
+      if (
+        window.confirm(
+          "회원가입이 완료되었습니다. 로그인 페이지로 이동하시겠습니까?"
+        )
+      ) {
+        navigate("/auth/login");
+      } else {
+        navigate("/");
       }
-      if (!error.email) {
-        setError("email", {
-          message: "이미 사용중인 이메일입니다.",
-        });
-      }
-    } else {
-      try {
-        await addNewUser({
-          email: getValues("email"),
-          nickname: getValues("nickname"),
-          password: getValues("password"),
-          address: `${getValues("address")} ${getValues("detail_address")}`,
-        });
-      } catch (error: any) {
-        if (error.code === "auth/email-already-in-use") {
-          setError("email", {
-            message: "이미 사용중인 이메일입니다.",
-          });
-        } else {
-          alert(`회원가입 중 문제가 발생하였습니다.`);
-        }
-      }
+    } catch (error: any) {
+      alert(
+        `회원가입 중 문제가 발생하였습니다. 나중에 다시 시도해주시기 바립니다.`
+      );
     }
   };
   const inputField = joinMembershipInputList.map((inputData) => (
@@ -102,7 +70,7 @@ const JoinMembership = () => {
       <S.Title>회원가입</S.Title>
       <form onSubmit={handleSubmit(onSubmit)}>
         <S.InputContainer>{inputField}</S.InputContainer>
-        <S.JoinBtn type="submit" value={"운동 시작하기"} onClick={clickDone} />
+        <S.JoinBtn type="submit" value={"운동 시작하기"} />
       </form>
       <S.LoginBox>
         <S.LoginText>이미 계정이 있으신가요?</S.LoginText>
