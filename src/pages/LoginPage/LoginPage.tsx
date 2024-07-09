@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 import * as S from "./styled";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { getData } from "../../apis/aip";
 import { useNavigate } from "react-router";
@@ -30,6 +30,7 @@ const LoginPage = () => {
     resolver: yupResolver(loginSchema),
   });
   const setUserData = useSetRecoilState(userData);
+  const [loginError,setLoginError] = useState("")
   const navigate = useNavigate();
   const changeValue = (name: InputName, value: string) => {
     setValue(name, value);
@@ -44,7 +45,10 @@ const LoginPage = () => {
         // });
         // navigate("/");
       })
-      .catch(() => {
+      .catch((error) => {
+        if(error === "wrong login") {
+          setLoginError("올바르지 않은 이메일 혹은 비밀번호입니다.")
+        }
         setError("password", {
           type: "manual",
           message: "비밀번호가 일치하지 않습니다.",
@@ -79,6 +83,10 @@ const LoginPage = () => {
       <S.LoginTitle>로그인</S.LoginTitle>
       <S.FormBox onSubmit={handleSubmit(onSubmit)}>
         {inputFields}
+        {loginError &&  <S.ErrorBox>
+          <S.AlertIcon />
+          <S.ErrorMessage>{loginError}</S.ErrorMessage>
+        </S.ErrorBox>}
         <S.LoginBtn type="submit" value={"로그인"} />
       </S.FormBox>
       <S.DividerBox>
