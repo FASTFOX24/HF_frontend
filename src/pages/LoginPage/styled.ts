@@ -2,6 +2,7 @@ import theme from "../../styles/theme";
 import styled from "styled-components";
 import { FcGoogle } from "react-icons/fc";
 import { RiKakaoTalkFill } from "react-icons/ri";
+import { IoAlertCircleOutline } from "react-icons/io5";
 
 export const Container = styled.div`
   display: flex;
@@ -25,6 +26,18 @@ export const FormBox = styled.form`
   display: grid;
   grid-gap: 32px;
   width: 312px;
+`;
+export const ErrorBox = styled.div`
+  position: absolute;
+  left: 4px;
+  margin-top: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const ErrorMessage = styled.p`
+  ${theme.text.caption_1}
+  color: ${theme.color.system.R400};
 `;
 export const LoginBtn = styled.input`
   ${theme.text.heading_4}
@@ -94,4 +107,9 @@ export const JMBtn = styled.a`
   color: ${theme.color.gray.G700};
   text-decoration: underline;
   text-underline-offset: 3px;
+`;
+export const AlertIcon = styled(IoAlertCircleOutline)`
+  font-size: 18px;
+  color: ${theme.color.system.R400};
+  margin-right: 2px;
 `;
